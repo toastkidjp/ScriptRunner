@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import org.fxmisc.richtext.CodeArea?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+  fx:id="scripterArea" fx:controller="jp.toastkid.script.Controller">
+  <children>
+    <HBox alignment="CENTER" minHeight="300.0" spacing="5.0">
+      <children>
+        <CodeArea fx:id="scripterInput" prefHeight="450.0" prefWidth="500.0">
+        </CodeArea>
+        <VBox minWidth="125.0" prefHeight="50.0">
+          <children>
+            <HBox minWidth="125.0" prefHeight="50.0" prefWidth="125.0">
+              <children>
+                <JFXButton minWidth="60.0" mnemonicParsing="false" onAction="#runScript" prefHeight="25.0" prefWidth="60.0" text="run" />
+              </children>
+            </HBox>
+            <Label maxWidth="-1.0" minWidth="125.0" prefHeight="25.0" text="Language" />
+            <ComboBox fx:id="scriptLanguage" minWidth="125.0">
+              <tooltip>
+                <Tooltip text="スクリプト言語を選択します。" />
+              </tooltip>
+              <items>
+                <FXCollections fx:factory="observableArrayList">
+                  <String fx:value="Groovy" />
+                  <String fx:value="Shell" />
+                  <String fx:value="Clojure" />
+                  <String fx:value="JavaScript" />
+                </FXCollections>
+              </items>
+            </ComboBox>
+          </children>
+        </VBox>
+        <CodeArea fx:id="scripterOutput" editable="false"
+          prefHeight="450.0" prefWidth="500.0" wrapText="true">
+        </CodeArea>
+      </children>
+    </HBox>
+    <HBox alignment="CENTER">
+      <children>
+        <Label text="Run by Script File" />
+      <JFXTextField fx:id="scriptName" editable="true" prefWidth="400.0">
+        <tooltip>
+            <Tooltip text="選択した Script ファイルを実行します。" />
+        </tooltip>
+      </JFXTextField>
+      <JFXButton onAction="#openScript" text="Open">
+        <tooltip>
+          <Tooltip text="Script ファイルを選択します。" />
+        </tooltip>
+      </JFXButton>
+      <JFXButton onAction="#reloadScript" text="Reload">
+        <tooltip>
+          <Tooltip text="選択した Script ファイルを再読込します。" />
+        </tooltip>
+      </JFXButton>
+      <JFXButton onAction="#saveScript" text="Save">
+        <tooltip>
+          <Tooltip text="選択した Script ファイルを保存します。" />
+        </tooltip>
+      </JFXButton>
+      </children>
+    </HBox>
+  </children>
+</VBox>

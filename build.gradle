@@ -32,12 +32,12 @@ dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.4.5'
     //compile 'org.python:jython-standalone:2.7.0'
     compile 'org.clojure:clojure:1.8.0'
-    compile 'org.apache.commons:commons-lang3:3.4'
-    compile 'org.fxmisc.richtext:richtextfx:0.7-M2'
-    compile 'org.eclipse.collections:eclipse-collections:8.0.0-M1'
-    compile 'com.jfoenix:jfoenix:1.0.0'
-    compile 'org.slf4j:slf4j-api:1.7.21'
-    compile 'org.slf4j:slf4j-log4j12:1.7.21'
+    provided 'org.apache.commons:commons-lang3:3.4'
+    provided 'org.fxmisc.richtext:richtextfx:0.7-M2'
+    provided 'org.eclipse.collections:eclipse-collections:8.0.0-M1'
+    provided 'com.jfoenix:jfoenix:1.0.0'
+    provided 'org.slf4j:slf4j-api:1.7.21'
+    provided 'org.slf4j:slf4j-log4j12:1.7.21'
 
     testCompile 'junit:junit:4.11'
 }

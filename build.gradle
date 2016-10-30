@@ -23,11 +23,11 @@ buildscript {
 
 //this one works with file dependencies. If you prefer
 configurations {
-    providedCompile
+    provided
 }
 
 dependencies {
-    providedCompile files("${javafxHome}/jre/lib/ext/jfxrt.jar")
+    provided files("${javafxHome}/jre/lib/ext/jfxrt.jar")
     compile fileTree(dir: 'libs', include: '*.jar')
     compile 'org.codehaus.groovy:groovy-all:2.4.5'
     //compile 'org.python:jython-standalone:2.7.0'
@@ -39,19 +39,18 @@ dependencies {
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile 'org.slf4j:slf4j-log4j12:1.7.21'
 
-
     testCompile 'junit:junit:4.11'
 }
 compileJava {
     //add required JavaFX libs to compile classpath
-    sourceSets.main.compileClasspath += configurations.providedCompile
+    sourceSets.main.compileClasspath += configurations.provided
     sourceSets.main.compileClasspath += configurations.runtime
     sourceSets.main.compileClasspath += configurations.testCompile
 }
 
 run {
     //add required JavaFX libs to runtime classpath
-    classpath += configurations.providedCompile
+    classpath += configurations.provided
     classpath += configurations.runtime
 }
 eclipse {

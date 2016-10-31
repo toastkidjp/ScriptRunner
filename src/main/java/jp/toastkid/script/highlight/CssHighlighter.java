@@ -18,9 +18,9 @@ import org.fxmisc.richtext.model.StyleSpansBuilder;
  *
  * @author Toast kid
  */
-public class JavaHighlighter extends Highlighter {
+public class CssHighlighter extends Highlighter {
 
-    private static final String PATH_TO_KEYWORDS  = "keywords/java.txt";
+    private static final String PATH_TO_KEYWORDS  = "keywords/css.txt";
     private static final String PAREN_PATTERN     = "\\(|\\)";
     private static final String BRACE_PATTERN     = "\\{|\\}";
     private static final String BRACKET_PATTERN   = "\\[|\\]";
@@ -34,7 +34,7 @@ public class JavaHighlighter extends Highlighter {
      * Initialize with CodeArea.
      * @param codeArea
      */
-    public JavaHighlighter(final CodeArea codeArea) {
+    public CssHighlighter(final CodeArea codeArea) {
         super(codeArea);
     }
 
@@ -50,8 +50,8 @@ public class JavaHighlighter extends Highlighter {
             final String styleClass =
                     matcher.group("KEYWORD") != null ? "keyword" :
                     matcher.group("PAREN") != null ? "paren" :
-                    matcher.group("BRACE") != null ? "brace" :
-                    matcher.group("BRACKET") != null ? "bracket" :
+                    matcher.group("BRACE")     != null ? "brace" :
+                    matcher.group("BRACKET")   != null ? "bracket" :
                     matcher.group("SEMICOLON") != null ? "semicolon" :
                     matcher.group("STRING") != null ? "string" :
                     matcher.group("COMMENT") != null ? "comment" :

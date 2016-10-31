@@ -55,6 +55,9 @@ run {
 }
 eclipse {
     classpath.defaultOutputDir = file('build')
+    classpath {
+        plusConfigurations += [ configurations.provided ]
+    }
 }
 
 //create some smarter looking start scripts

@@ -76,6 +76,7 @@ public class Controller implements Initializable {
             stylesheets.clear();
         }
         stylesheets.addAll(stage.getScene().getStylesheets());
+        stylesheets.add(getClass().getClassLoader().getResource("java_keywords.css").toExternalForm());
     }
 
     /**
@@ -166,8 +167,7 @@ public class Controller implements Initializable {
      */
     @FXML
     public void runScript() {
-        scripterOutput
-            .replaceText("Work in Progress......Could you please wait a moment?");
+        scripterOutput.replaceText("Work in Progress......Could you please wait a moment?");
         final Language lang = Language.valueOf(
                 scriptLanguage.getSelectionModel().getSelectedItem().toUpperCase());
         final ScriptRunner runner = ScriptRunner.find(lang);
@@ -182,7 +182,7 @@ public class Controller implements Initializable {
     public void initialize(final URL location, final ResourceBundle resources) {
         scripterInput.setParagraphGraphicFactory(LineNumberFactory.get(scripterInput));
         scripterOutput.setParagraphGraphicFactory(LineNumberFactory.get(scripterOutput));
-        new JavaHighlighter(scripterInput);
+        new JavaHighlighter(scripterInput).highlight();
         scriptLanguage.getSelectionModel().select(0);
         scripterInput.setOnKeyPressed((e) -> {
             if (RUN_SCRIPT.match(e)) {

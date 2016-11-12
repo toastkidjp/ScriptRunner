@@ -4,6 +4,10 @@ import java.util.Optional;
 
 import javax.script.ScriptEngine;
 
+import org.fxmisc.richtext.CodeArea;
+
+import jp.toastkid.script.highlight.Highlighter;
+
 /**
  * Script language's script runner.
  * @author Toast kid
@@ -21,9 +25,6 @@ public abstract class ScriptRunner {
 
     /** JavaScript's runner. */
     private static final ScriptRunner JS      = new JavaScriptRunner();
-
-    /** Python's runner. */
-    private static final ScriptRunner PYTHON  = new PythonRunner();
 
     /** Clojure's runner. */
     private static final ScriptRunner CLOJURE = new ClojureRunner();
@@ -51,8 +52,6 @@ public abstract class ScriptRunner {
                 return JS;
             case CLOJURE:
                 return CLOJURE;
-            case PYTHON:
-                return PYTHON;
             case SHELL:
                 return SHELL;
             case GROOVY:
@@ -60,4 +59,11 @@ public abstract class ScriptRunner {
                 return GROOVY;
         }
     }
+
+    /**
+     * Return Code Highlighter.
+     * @param scripterInput
+     * @return
+     */
+    public abstract Highlighter initHighlight(final CodeArea codeArea);
 }

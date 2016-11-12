@@ -9,8 +9,11 @@ import javax.script.ScriptException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.codehaus.groovy.control.CompilationFailedException;
+import org.fxmisc.richtext.CodeArea;
 
 import clojure.contrib.jsr223.ClojureScriptEngineFactory;
+import jp.toastkid.script.highlight.Highlighter;
+import jp.toastkid.script.highlight.NoopHighlighter;
 
 /**
  * Clojure runner.
@@ -59,5 +62,10 @@ public class ClojureRunner extends ScriptRunner {
 
     public Object get(final String key) {
         return engine.get(key);
+    }
+
+    @Override
+    public Highlighter initHighlight(final CodeArea codeArea) {
+        return new NoopHighlighter(codeArea);
     }
 }

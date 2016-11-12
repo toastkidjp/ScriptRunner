@@ -10,6 +10,10 @@ import javax.script.ScriptException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.codehaus.groovy.control.CompilationFailedException;
+import org.fxmisc.richtext.CodeArea;
+
+import jp.toastkid.script.highlight.Highlighter;
+import jp.toastkid.script.highlight.JavaScriptHighlighter;
 
 /**
  * JavaScript's script runner.
@@ -46,9 +50,13 @@ public class JavaScriptRunner extends ScriptRunner {
             writer.close();
         } catch (final CompilationFailedException | IOException | ScriptException e) {
             e.printStackTrace();
-            result.append("Occurred Exception.").append(LINE_SEPARATOR)
-                .append(e.getMessage());
+            result.append("Occurred Exception.").append(LINE_SEPARATOR).append(e.getMessage());
         }
         return Optional.of(result.toString());
+    }
+
+    @Override
+    public Highlighter initHighlight(final CodeArea codeArea) {
+        return new JavaScriptHighlighter(codeArea);
     }
 }

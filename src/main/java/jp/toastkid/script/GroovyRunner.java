@@ -10,11 +10,15 @@ import javax.script.ScriptContext;
 import org.apache.commons.lang3.StringUtils;
 import org.codehaus.groovy.control.CompilationFailedException;
 import org.codehaus.groovy.jsr223.GroovyScriptEngineFactory;
+import org.fxmisc.richtext.CodeArea;
+
+import jp.toastkid.script.highlight.GroovyHighlighter;
+import jp.toastkid.script.highlight.Highlighter;
 
 /**
  * Groovy's runner.
- * @author Toast kid
  *
+ * @author Toast kid
  */
 public class GroovyRunner extends ScriptRunner {
 
@@ -54,5 +58,10 @@ public class GroovyRunner extends ScriptRunner {
                 .append(e.getMessage());
         }
         return Optional.of(result.toString());
+    }
+
+    @Override
+    public Highlighter initHighlight(final CodeArea codeArea) {
+        return new GroovyHighlighter(codeArea);
     }
 }

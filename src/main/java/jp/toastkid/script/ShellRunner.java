@@ -8,6 +8,10 @@ import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.codehaus.groovy.control.CompilationFailedException;
+import org.fxmisc.richtext.CodeArea;
+
+import jp.toastkid.script.highlight.Highlighter;
+import jp.toastkid.script.highlight.JavaHighlighter;
 
 /**
  * run command line script. You need sh.
@@ -38,6 +42,11 @@ public class ShellRunner extends ScriptRunner {
                   .append(e.getMessage());
         }
         return Optional.of(result.toString());
+    }
+
+    @Override
+    public Highlighter initHighlight(final CodeArea codeArea) {
+        return new JavaHighlighter(codeArea);
     }
 
 }

@@ -2,9 +2,13 @@ package jp.toastkid.script;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -16,6 +20,9 @@ import javafx.stage.StageStyle;
  * @version 0.0.1
  */
 public final class Main extends Application {
+
+    /** Logger. */
+    private static final Logger LOGGER = LoggerFactory.getLogger(Main.class.getName());
 
     /** Application title. */
     private static final String TITLE = "ScriptRunner";
@@ -33,7 +40,7 @@ public final class Main extends Application {
      * Constructor.
      */
     public Main() {
-        //final long start = System.currentTimeMillis();
+        final long start = System.currentTimeMillis();
         this.stage = new Stage(StageStyle.DECORATED);
         stage.initModality(Modality.WINDOW_MODAL);
         stage.setTitle(TITLE);
@@ -42,7 +49,7 @@ public final class Main extends Application {
         stage.setWidth(800);
         stage.setHeight(600);
         controller.setStage(stage);
-        //controller.setStatus("完了 - " + (System.currentTimeMillis() - start) + "[ms]");
+        LOGGER.info("完了 - {}[ms]", System.currentTimeMillis() - start);
     }
 
     /**
@@ -59,7 +66,16 @@ public final class Main extends Application {
      * show this app.
      */
     public void show() {
+        stage.setOnCloseRequest(e -> System.exit(0));
         stage.showAndWait();
+    }
+
+    /**
+     * Return root pane.
+     * @return root pane.
+     */
+    public Pane getRoot() {
+        return controller.getRoot();
     }
 
     @Override
@@ -68,18 +84,19 @@ public final class Main extends Application {
     }
 
     /**
-     * コントローラに stage を渡しシーンファイルを読込.
-     * @param stage Stage オブジェクト
-     * @return Scene オブジェクト
+     * Read scene file and set scene to passed stage.
+     * @param stage Stage Object
+     * @return Scene Object
      */
     private final Scene readScene(final Stage stage) {
         try {
-            final FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(FXML_PATH));
+            final FXMLLoader loader
+                = new FXMLLoader(getClass().getClassLoader().getResource(FXML_PATH));
             final VBox loaded = (VBox) loader.load();
             controller = (Controller) loader.getController();
             return new Scene(loaded);
         } catch (final IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Scene Reading Error", e);
         }
         return null;
     }

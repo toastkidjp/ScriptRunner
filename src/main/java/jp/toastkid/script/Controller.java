@@ -199,7 +199,6 @@ public class Controller implements Initializable {
             }
             subscription = findRunner().initHighlight(scripterInput).highlight();
             scripterInput.replaceText(scripterInput.getText());
-            System.out.println(findRunner().getClass().getSimpleName());
         });
         scriptLanguage.getSelectionModel().select(0);
         scriptLanguage.fireEvent(new ActionEvent());

@@ -23,7 +23,7 @@
           <children>
             <HBox minWidth="125.0" prefHeight="50.0" prefWidth="125.0">
               <children>
-                <JFXButton minWidth="60.0" mnemonicParsing="false" onAction="#runScript" prefHeight="25.0" prefWidth="60.0" text="run" />
+                <JFXButton fx:id="runButton" minWidth="60.0" mnemonicParsing="false" onAction="#runScript" prefHeight="25.0" prefWidth="60.0" text="run" />
               </children>
             </HBox>
             <Label maxWidth="-1.0" minWidth="125.0" prefHeight="25.0" text="Language" />

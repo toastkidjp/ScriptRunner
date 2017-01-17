@@ -19,6 +19,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -63,9 +64,14 @@ public class Controller implements Initializable {
     @FXML
     private VBox root;
 
+    /** Run button. */
+    @FXML
+    private Button runButton;
+
     /** parent's stage. */
     private Stage stage;
 
+    /** Subscription. */
     private Subscription subscription;
 
     /**
@@ -169,7 +175,7 @@ public class Controller implements Initializable {
      * run script use input plain text.
      */
     @FXML
-    public void runScript() {
+    private void runScript() {
         scripterOutput.replaceText("Work in Progress......Could you please wait a moment?");
         final ScriptRunner runner = findRunner();
         final String result = runner.run(scripterInput.getText()).get();

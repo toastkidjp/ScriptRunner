@@ -26,9 +26,6 @@ public abstract class ScriptRunner {
     /** JavaScript's runner. */
     private static final ScriptRunner JS      = new JavaScriptRunner();
 
-    /** Clojure's runner. */
-    private static final ScriptRunner CLOJURE = new ClojureRunner();
-
     /** Shell's runner. */
     private static final ScriptRunner SHELL   = new ShellRunner();
 
@@ -50,8 +47,6 @@ public abstract class ScriptRunner {
         switch (languageName) {
             case JAVASCRIPT:
                 return JS;
-            case CLOJURE:
-                return CLOJURE;
             case SHELL:
                 return SHELL;
             case GROOVY:

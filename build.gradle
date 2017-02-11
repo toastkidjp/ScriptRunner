@@ -4,7 +4,7 @@ apply plugin: 'eclipse'
 sourceCompatibility = 1.8
 version = '0.0.1'
 
-def mainClassName = 'jp.toastkid.script.Main'
+mainClassName = 'jp.toastkid.script.Main'
 def defaultEncoding = 'UTF-8'
 def jdkVersion = '1.8'
 def javafxHome = System.getenv('JAVA_HOME')
@@ -30,18 +30,16 @@ configurations {
 }
 
 dependencies {
-    provided files("${javafxHome}/jre/lib/ext/jfxrt.jar")
     compile fileTree(dir: 'libs', include: '*.jar')
-    compile 'org.clojure:clojure:1.8.0'
-    compile 'org.codehaus.groovy:groovy-all:2.4.7'
-    provided 'org.apache.commons:commons-lang3:3.4'
+    compile 'org.codehaus.groovy:groovy-all:2.4.8'
+    provided 'org.apache.commons:commons-lang3:3.5'
     provided 'org.fxmisc.richtext:richtextfx:1.0.0-SNAPSHOT'
-    provided 'org.eclipse.collections:eclipse-collections:8.0.0-M1'
+    provided 'org.eclipse.collections:eclipse-collections:8.0.0'
     provided 'com.jfoenix:jfoenix:1.0.0'
     provided 'org.slf4j:slf4j-api:1.7.21'
     provided 'org.slf4j:slf4j-log4j12:1.7.21'
 
-    testCompile 'junit:junit:4.11'
+    testCompile 'junit:junit:4.12'
     testCompile 'org.testfx:testfx-junit:4.0.5-alpha'
     testCompile 'org.mockito:mockito-all:1.9.5'
 }
@@ -72,13 +70,6 @@ startScripts {
     }
 }
 
-task excludedJar(type: Jar) {
-    baseName = rootProject.name + "_excluded"
-    destinationDir = projectDir
-    from sourceSets.main.output
-    exclude('com/**')
-}
-
 jar {
     manifest {
         attributes 'Main-Class' : mainClassName
@@ -86,3 +77,15 @@ jar {
     destinationDir = projectDir
     from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
 }
+
+task fatJar(type: Jar, dependsOn: compileJava) {
+    baseName = project.name + "_executable"
+    manifest {
+        attributes 'Main-Class' : mainClassName
+    }
+    destinationDir = projectDir
+    from configurations.compile.collect  { it.isDirectory() ? it : zipTree(it) }
+    from configurations.provided.collect { it.isDirectory() ? it : zipTree(it) }
+    from sourceSets.main.output
+}
+

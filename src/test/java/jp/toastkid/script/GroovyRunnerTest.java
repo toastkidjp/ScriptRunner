@@ -1,4 +1,4 @@
-package jp.toastkid.libs;
+package jp.toastkid.script;
 
 import static org.junit.Assert.assertEquals;
 
@@ -7,28 +7,28 @@ import java.util.Optional;
 import org.junit.Before;
 import org.junit.Test;
 
-import jp.toastkid.script.JavaScriptRunner;
+import jp.toastkid.script.GroovyRunner;
 
 /**
- * {@link JavaScriptRunner}'s test.
+ * {@link GroovyRunner}'s test.
  * @author Toast kid
  *
  */
-public class JavaScriptRunnerTest {
+public class GroovyRunnerTest {
 
     /** test object. */
-    private JavaScriptRunner runner;
+    private GroovyRunner runner;
 
     /**
      * initialize test object.
      */
     @Before
     public void setUp() {
-        runner = new JavaScriptRunner();
+        runner = new GroovyRunner();
     }
 
     /**
-     * check {@link JavaScriptRunner#run(String)}.
+     * check {@link GroovyRunner#run(String)}.
      */
     @Test
     public void testRunNullable() {
@@ -36,7 +36,7 @@ public class JavaScriptRunnerTest {
     }
 
     /**
-     * check {@link JavaScriptRunner#run(String)}.
+     * check {@link GroovyRunner#run(String)}.
      */
     @Test
     public void testRunWithEmpty() {
@@ -44,11 +44,11 @@ public class JavaScriptRunnerTest {
     }
 
     /**
-     * check {@link JavaScriptRunner#run(String)}.
+     * check {@link GroovyRunner#run(String)}.
      */
     @Test
     public void testRun() {
-        assertEquals("Hello world.", runner.run("print('Hello world.');").get().trim());
+        assertEquals("Hello world.", runner.run("print 'Hello world.'").get().trim());
     }
 
     /**
@@ -58,4 +58,5 @@ public class JavaScriptRunnerTest {
     public void testRunByMonkey() {
         runner.run("jaisdfe");
     }
+
 }

@@ -1,4 +1,4 @@
-package jp.toastkid.libs;
+package jp.toastkid.script;
 
 import static org.junit.Assert.assertTrue;
 
@@ -6,8 +6,8 @@ import org.junit.Test;
 
 import jp.toastkid.script.GroovyRunner;
 import jp.toastkid.script.JavaScriptRunner;
-import jp.toastkid.script.Language;
 import jp.toastkid.script.ScriptRunner;
+import jp.toastkid.script.models.Language;
 
 /**
  * {@link ScriptRunner}'s test.

@@ -1,14 +1,15 @@
 apply plugin: 'application'
 apply plugin: 'eclipse'
+apply plugin: 'jacoco'
 
 sourceCompatibility = 1.8
 version = '0.0.1'
 
-mainClassName = 'jp.toastkid.script.Main'
+mainClassName       = 'jp.toastkid.script.Main'
 def defaultEncoding = 'UTF-8'
-def jdkVersion = '1.8'
-def javafxHome = System.getenv('JAVA_HOME')
-def antJavafxJar = 'build/classes/ant-javafx'
+def jdkVersion      = '1.8'
+def javafxHome      = System.getenv('JAVA_HOME')
+def antJavafxJar    = 'build/classes/ant-javafx'
 [compileJava, compileTestJava]*.options*.encoding = defaultEncoding
 
 repositories {
@@ -44,17 +45,19 @@ dependencies {
     testCompile 'org.mockito:mockito-all:1.9.5'
 }
 compileJava {
-    //add required JavaFX libs to compile classpath
     sourceSets.main.compileClasspath += configurations.provided
-    sourceSets.main.compileClasspath += configurations.runtime
+    sourceSets.test.compileClasspath += configurations.provided
     sourceSets.main.compileClasspath += configurations.testCompile
 }
 
 run {
-    //add required JavaFX libs to runtime classpath
     classpath += configurations.provided
-    classpath += configurations.runtime
 }
+
+test {
+    classpath += configurations.provided
+}
+
 eclipse {
     classpath.defaultOutputDir = file('build')
     classpath {
@@ -62,7 +65,6 @@ eclipse {
     }
 }
 
-//create some smarter looking start scripts
 startScripts {
     doLast {
         unixScript.text = "java -jar ../libs/$jar.archiveName"

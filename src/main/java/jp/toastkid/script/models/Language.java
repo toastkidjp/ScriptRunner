@@ -1,4 +1,4 @@
-package jp.toastkid.script;
+package jp.toastkid.script.models;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
  *
  */
 public enum Language {
-    JAVASCRIPT, GROOVY, PYTHON, SHELL;
+    JAVASCRIPT, GROOVY, PYTHON;
 
     /**
      * 文字列に合った拡張子を返す.
@@ -36,8 +36,6 @@ public enum Language {
                 return ".js";
             case PYTHON:
                 return ".py";
-            case SHELL:
-                return ".sh";
             case GROOVY:
             default:
                 return ".groovy";

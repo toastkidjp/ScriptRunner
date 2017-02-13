@@ -29,6 +29,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import jp.toastkid.script.models.Language;
 
 /**
  * Script area's controller.
@@ -89,34 +90,12 @@ public class Controller implements Initializable {
     }
 
     /**
-     * Hide article search box area.
-     */
-    @FXML
-    public void openScripter() {
-        root.setManaged(true);
-        root.visibleProperty().setValue(true);
-        scripterInput.requestFocus();
-    }
-
-    /**
-     * Hide article search box area.
-     * @see <a href="http://stackoverflow.com/questions/19923443/
-     *javafx-fill-empty-space-when-component-is-not-visible">
-     * JavaFX Fill empty space when component is not visible?</a>
-     */
-    @FXML
-    public void hideScripter() {
-        root.visibleProperty().setValue(false);
-        root.setManaged(false);
-    }
-
-    /**
      * Open script file.
      * @see <a href="http://javafx-trick.appspot.com/article/110010/80074/70110.html">
      * ファイル選択ダイアログ(showOpenDialog)の作成方法</a>
      */
     @FXML
-    public void openScript() {
+    private void openScript() {
         final FileChooser fc = new FileChooser();
         fc.setInitialDirectory(new File("."));
         final File result = fc.showOpenDialog(stage.getScene().getWindow());
@@ -127,7 +106,7 @@ public class Controller implements Initializable {
      * Save script to file.
      */
     @FXML
-    public void saveScript() {
+    private void saveScript() {
         try {
             if (new File(scriptName.getText()) != null) {
                 final File file = new File("script"

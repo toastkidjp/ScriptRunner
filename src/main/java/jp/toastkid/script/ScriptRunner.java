@@ -7,6 +7,7 @@ import javax.script.ScriptEngine;
 import org.fxmisc.richtext.CodeArea;
 
 import jp.toastkid.script.highlight.Highlighter;
+import jp.toastkid.script.models.Language;
 
 /**
  * Script language's script runner.
@@ -26,9 +27,6 @@ public abstract class ScriptRunner {
     /** JavaScript's runner. */
     private static final ScriptRunner JS      = new JavaScriptRunner();
 
-    /** Shell's runner. */
-    private static final ScriptRunner SHELL   = new ShellRunner();
-
     /** ScriptEngine. */
     protected ScriptEngine engine;
 
@@ -47,8 +45,6 @@ public abstract class ScriptRunner {
         switch (languageName) {
             case JAVASCRIPT:
                 return JS;
-            case SHELL:
-                return SHELL;
             case GROOVY:
             default:
                 return GROOVY;

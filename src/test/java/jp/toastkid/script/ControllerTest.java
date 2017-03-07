@@ -1,6 +1,7 @@
 package jp.toastkid.script;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
@@ -35,8 +36,9 @@ public class ControllerTest extends ApplicationTest {
     @Test
     public void test() throws InterruptedException {
         final CodeArea input = (CodeArea) lookup("#scripterInput").query();
-        final String text = "println 'Hello world.'";
+        assertTrue(input.isFocused());
         Platform.runLater(() -> {
+            final String text = "println 'Hello world.'";
             input.replaceText(text);
             assertEquals(text, input.getText());
             lookup("#runButton").query().fireEvent(new ActionEvent());

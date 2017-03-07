@@ -30,6 +30,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import jp.toastkid.script.models.Language;
+import jp.toastkid.script.runner.ScriptRunner;
 
 /**
  * Script area's controller.
@@ -192,6 +193,14 @@ public class Controller implements Initializable {
                 runScript();
             }
         });
+        requestFocus();
+    }
+
+    /**
+     * Focus input area.
+     */
+    void requestFocus() {
+        scripterInput.requestFocus();
     }
 
     /**

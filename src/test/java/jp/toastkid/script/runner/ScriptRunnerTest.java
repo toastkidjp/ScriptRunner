@@ -1,13 +1,13 @@
-package jp.toastkid.script;
+package jp.toastkid.script.runner;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import jp.toastkid.script.GroovyRunner;
-import jp.toastkid.script.JavaScriptRunner;
-import jp.toastkid.script.ScriptRunner;
 import jp.toastkid.script.models.Language;
+import jp.toastkid.script.runner.GroovyRunner;
+import jp.toastkid.script.runner.JavaScriptRunner;
+import jp.toastkid.script.runner.ScriptRunner;
 
 /**
  * {@link ScriptRunner}'s test.

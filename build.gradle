@@ -32,10 +32,9 @@ configurations {
 
 dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
-    compile 'org.codehaus.groovy:groovy-all:2.4.8'
+    compile 'org.codehaus.groovy:groovy-all:2.5.0-alpha-1'
     provided 'org.apache.commons:commons-lang3:3.5'
     provided 'org.fxmisc.richtext:richtextfx:1.0.0-SNAPSHOT'
-    provided 'org.eclipse.collections:eclipse-collections:8.0.0'
     provided 'com.jfoenix:jfoenix:1.0.0'
     provided 'org.slf4j:slf4j-api:1.7.21'
     provided 'org.slf4j:slf4j-log4j12:1.7.21'
